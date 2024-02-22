@@ -26,8 +26,10 @@
 
 # <h3> arr.length
 Отражает количество элементов в массиве.
+<pre>
 	const arr = [1, 2, 3]
 	console.log(arr.length) // 3
+</pre>
 
 # <h2> Методы экземпляра </h2> #
 # <h3> arr.at() </h3> #
