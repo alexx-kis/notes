@@ -21,11 +21,11 @@
 <a href="https://pristine.js.org/"></a>
 
 * в модуле, который обеспечивает функциональность формы, создать новую валидацию:
-	// user-form.js:
-	const form = document.querySelector('.form');
-	const pristine = new Pristine(form, {
-		// настройки
-	});
+		// user-form.js:
+		const form = document.querySelector('.form');
+		const pristine = new Pristine(form, {
+			// настройки
+		});
 
 * на <u>форму</u> добавить обработчик события submit
 
