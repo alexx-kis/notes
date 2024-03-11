@@ -21,7 +21,7 @@
 <a href="https://pristine.js.org/"></a>
 
 * в модуле, который обеспечивает функциональность формы, создать новую валидацию:
-		// user-form.js:
+		<!-- // user-form.js: -->
 		const form = document.querySelector('.form');
 		const pristine = new Pristine(form, {
 			// настройки
