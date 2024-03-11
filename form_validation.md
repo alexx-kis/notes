@@ -29,7 +29,7 @@
 			// настройки
 		});
 
-* на <u>форму</u> добавить обработчик события submit
+* на <i>форму</i> добавить обработчик события submit
 
 		form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
