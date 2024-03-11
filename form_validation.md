@@ -29,16 +29,16 @@
 
 * на <u>форму</u> добавить обработчик события submit
 
-	form.addEventListener('submit', (evt) => {
-		evt.preventDefault();
+		form.addEventListener('submit', (evt) => {
+			evt.preventDefault();
 
-		const isValid = prostine.validate();
+			const isValid = prostine.validate();
 
-		if (isValid) {
-			console.log('можно отправлять');
-		} else {
-			console.log('форма не валидна');
-		}
-	})
+			if (isValid) {
+				console.log('можно отправлять');
+			} else {
+				console.log('форма не валидна');
+			}
+		})
 
 * в функцию Pristine можно передать настройки
