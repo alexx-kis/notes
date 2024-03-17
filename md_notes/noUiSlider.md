@@ -36,3 +36,76 @@
 		});
 
 * первый параметр - элемент слайдера, второй - объект с настройками
+* настройки:
+	- range - диапазон возможных значений
+	- min - минимальное значение
+	- max - максимальное значение
+	- start - начальное значение на слайдере
+	- step - шаг слайдера
+	- connect - указывает, с какой стороны закрашивать слайдер
+
+### ПРИВЯЗКА СЛАЙДЕР К ИНПУТУ СО ЗНАЧЕНИЕМ ###
+
+* найти на странице элемент инпут
+
+		const valueElement = document.querySelector('.level-form__value');
+
+* для слайдера назначить обработчик события, в котором значение слайдера будет записываться в инпут
+
+		sliderElement.noUiSlider.on('update', () => {
+			valueElement.value = sliderElement.noUiSlider.get();
+		});
+
+* начальное значение в поле ввода нужно будет записать самостоятельно
+
+		valueElement.value = 80;
+
+* чтобы изменять настройки слайдера по какому-то действию, нужно, например на чекбокс, повестить обработчик
+
+		specialElement.addEventListener('change', (evt) => {
+			if (evt.target.checked) {
+				sliderElement.noUiSlider.updateOptions({
+					range: {
+						min: 1,
+						max: 10,
+					},
+					step: 0.1,
+				});
+			} else {
+				sliderElement.noUiSlider.updateOptions({
+					range: {
+						min: 0,
+						max: 100,
+					},
+					step: 1,
+				});
+				sliderElement.noUiSlider.set(80);
+			}
+		});
+
+### Форматирование значений ###
+
+* добавить в объект настроек слайдера 
+
+		format: {
+			to: function (value) {
+				if (Number.isInteger(value)) {
+					return value.toFixed(0);
+				}
+				return value.toFixed(1);
+			},
+			from: function (value) {
+				return parseFloat(value);
+			},
+		},
+
+* метод .format.to() нужен для форматирования значения из слайдера и вывода его где-либо
+* метод .format.from() нужен для форматирования значения для слайдера. Этот метод должен строго возвращать число, поэтому используем parseFloat()
+
+## Блокировка слайдера ##
+
+* элементу слайдера нужно добавить атрибут disabled со значением true. А чтобы разблокировать слайдер, этот атрибут надо убрать
+
+		sliderElement.setAttribute('disabled', true); 
+
+		sliderElement.removeAttribute('disabled');
