@@ -232,7 +232,7 @@
 // 	})
 // 	.then((result) => {
 // 		return new Promise(function (resolve) {
-// 			resolve(result + '2'); //этот результат попадет в следующий then 
+// 			resolve(result + '2'); //этот результат попадет в следующий then
 // 		});
 // 	})
 // 	.then((result) => {
@@ -247,11 +247,11 @@
 
 // пусть по каким-то причинам промис завершится с ошибкой:
 
-const promise = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		reject('error');
-	}, 3000);
-});
+// const promise = new Promise((resolve, reject) => {
+// 	setTimeout(() => {
+// 		reject('error');
+// 	}, 3000);
+// });
 
 // в этом случае выполнение кода сразу перейдёт к тому then, в котором есть функция-обработчик ошибки, либо к первому catch, смотря, что встретится раньше
 
@@ -316,7 +316,7 @@ const promise = new Promise((resolve, reject) => {
 // 		if (всеХорошо) {
 // 			return result + '2';
 // 		} else {
-// 			throw new Error('ошибка'); // переходим к ближайшему перехватчику 
+// 			throw new Error('ошибка'); // переходим к ближайшему перехватчику
 // 		}
 // 	})
 // 	.then((result) => {
@@ -349,5 +349,183 @@ const promise = new Promise((resolve, reject) => {
 // 	});
 
 
-// Работа с массивами промисов 
-// https://code.mu/ru/javascript/book/supreme/promises/arrays/
+// Работа с массивами промисов
+
+// метод Promise.all() позволяет выполнить код по окончанию всех промисов, переданных ему в виде массива, а метод Promise.race() дожидается загрузки первого промиса из массива, отбрасывая остальные
+
+// оба метода своим результатом возвращают новый промис
+// для метода Promise.all() результатом этого промиса будет массив результатов всех переданных промисов (порядок результатов соответствует порядку промисов в массиве), а для Promise.race() - результат первого сработавшего промиса
+
+// пусть есть массив промисов:
+
+// const promises = [
+// 	new Promise(resolve => {
+// 		setTimeout(() => {
+// 			resolve(1);
+// 		}, 1000);
+// 	}),
+// 	new Promise(resolve => {
+// 		setTimeout(() => {
+// 			resolve(2);
+// 		}, 2000);
+// 	}),
+// 	new Promise(resolve => {
+// 		setTimeout(() => {
+// 			resolve(3);
+// 		}, 3000);
+// 	})
+// ];
+
+// с помощью Promise.race() дождёмся окончания загрузки первого из промисов:
+
+// Promise.race(promises).then((result) => {
+// 	console.log(result);
+// });
+
+// если хотя бы один из промисов в массиве будет отклонён, то промис с результатом сразу же перейдёт в состояние rejected
+//поэтому возникшее исключение можно поймать через catch
+
+// Promise.all(promises)
+// 	.then((result) => {
+// 		console.log(result);
+// 	})
+// 	.catch((error) => {
+// 		console.log(error);
+// 	});
+
+
+// Создание сработавших промисов
+
+// иногда может понадобиться создать уже выполненный промис
+// для этого существует два метода:
+// 1. Promise.resolve() создаёт успешно выполненный промис
+// 2. Promise.reject() создаёт отклонённый промис
+
+// параметром эти методы получают то, что станет результатом или ошибкой промиса соответственно
+
+// когда может понадобиться
+
+// пусть есть функция, которая параметром принимает число, что-то с ним делает асинхронно и возвращает промис с результатом
+
+// const func = (number) => {
+// 	return new Promise((resolve) => {
+// 		setTimeout(() => {
+// 			resolve(number ** 2);
+// 		}, 3000);
+// 	});
+// };
+
+// func(5).then((result) => {
+// 	console.log(result);
+// });
+
+// пусть теперь асинхронная операция совершается только если передано число больше нуля, иначе результатом функции будет 0
+
+// const func = (number) => {
+// 	if (number > 0) {
+// 		return new Promise((resolve) => {
+// 			setTimeout(() => {
+// 				resolve(num ** 2);
+// 			}, 3000);
+// 		});
+// 	} else {
+// 		return 0;
+// 	}
+// };
+
+// теперь получается, что функция возвращает или промис, или число
+// из-за этого больше невозможно применить метод then к результату функции, так как в случае возврата функцией числа получится ошибка:
+
+// func(0).then((result) => { //ошибка - применение метода then к нулю
+
+// });
+
+// исправить проблему поможет Promise.resolve:
+
+// const func = (number) => {
+// 	if (number > 0) {
+// 		return new Promise((resolve) => {
+// 			setTimeout(() => {
+// 				resolve(num ** 2);
+// 			}, 3000);
+// 		});
+// 	} else {
+// 		return Promise.resolve(0); // возвращает промис, а не число
+// 	}
+// };
+
+// пусть теперь для переданного числа возвращается 0, а для чисел меньше 0 - исключение: используем метод Promise.reject():
+
+// const func = (number) => {
+// 	if (number > 0) {
+// 		return new Promise((resolve) => {
+// 			setTimeout(() => {
+// 				resolve(number ** 2);
+// 			}, 3000);
+// 		});
+// 	} else if (number === 0) {
+// 		return Promise.resolve(0);
+// 	} else {
+// 		return Promise.reject('incorrect number'); // отклонённый промис
+// 	}
+// };
+
+// func(-1).then((result) => {
+// 	console.log(result);
+// });
+
+
+// Промисификация асинхронного кода
+
+// так как промисы появились не так давно, некоторый асинхронный функционал может не поддерживать промисы
+// в этом случае полезно создать над таким кодом оболочку в виде промиса, так как пользоваться промисами гораздо удобнее
+// такое преобразование называют
+
+// например функционал, который не поддерживает промисы - загрузка картинок
+
+// const image = document.createElement('img');
+// image.src = 'img.png';
+
+// image.addEventListener('load', () => {
+// 	document.body.append(image);
+// });
+
+// image.addEventListener('error', () => {
+// 	console.log('image load error');
+// });
+
+// выполним промисификацию этого кода, обернув его в функцию, возвращающую промис
+
+// const loadImage = (path) => {
+// 	return new Promise((resolve, reject) => {
+// 		const image = document.createElement('img');
+// 		image.src = path;
+
+// 		image.addEventListener('load', () => {
+// 			resolve(image);
+// 		});
+// 		image.addEventListener('error', () => {
+// 			reject(new Error('image "' + path + '"  load error'));
+// 		});
+// 	});
+// };
+
+// функцией можно воспользоваться следующим образом:
+
+// loadImage('img.png')
+// 	.then((image) => {
+// 		document.body.append(image);
+// 	})
+// 	.catch((error) => {
+// 		console.log(error);
+// 	});
+
+
+// Проблема promise hell
+// https://code.mu/ru/javascript/book/supreme/promises/promise-hell/
+
+// Промисы в синхронном стиле
+// https://code.mu/ru/javascript/book/supreme/promises/sync-style/
+
+// Исключения в синхронном стиле
+// https://code.mu/ru/javascript/book/supreme/promises/sync-style-exceptions/
