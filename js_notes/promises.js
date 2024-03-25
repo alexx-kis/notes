@@ -529,3 +529,22 @@
 
 // Исключения в синхронном стиле
 // https://code.mu/ru/javascript/book/supreme/promises/sync-style-exceptions/
+
+const number1 = 10;
+const number2 = 40;
+
+const promise = new Promise((resolve, reject) => {
+	if (number1 > number2) {
+		resolve(number1 - number2);
+	} else {
+		throw { name: 'myError', message: 'my error message' };
+	}
+});
+
+promise.then((result) => {
+	console.log(result);
+}).catch((error) => {
+	console.log(error.name, error.message);
+}).finally(() => {
+	console.log('promise ended');
+});
