@@ -184,3 +184,95 @@
             return this.age;
           }
         }
+
+## Приватные методы при наследовании в ООП
+
+- приватные методы не наследуются, это сделано специально, чтобы не нарушать инкапсуляцию
+
+        class User {
+          setName(name) {
+            this.name = name;
+          }
+          getName() {
+            return this.#capeFirst(this.name);
+          }
+          #capeFirst(str) {
+            return str[0].toUpperCase() + str.slice(1);
+          }
+        }
+
+        class Student extends User {
+          setSurname(surname) {
+            this.surname = surname;
+          }
+          getSurname() {
+            return this.#capeFirst(this.surname); // Error
+          }
+        }
+
+## Приватные свойства при наследовании в ООП
+
+- приватные свойства тоже не наследуются, но потомок может манипулировать ими через публичные методы родителя
+
+        class User {
+          #name;
+          setName(name) {
+            this.#name = name;
+          }
+          getName() {
+            return this.#name;
+          }
+        }
+
+        class Student extends User {
+
+        }
+
+        const student = new Student;
+
+        student.setName('john');
+        console.log(student.getName()) //john
+
+- проблема приватных свойств при наследовании в ООП
+
+- то, что приватные свойства не наследуются, может привести к проблеме
+  пусть есть класс-родитель с приватным свойством:
+
+        class User {
+          #age;
+          setAge(age) {
+            this.#age = age;
+          }
+          getAge() {
+            return this.#age;
+          }
+        }
+
+- пусть в классе-потомке мы решили сделать метод, который будет увеличивать возраст на единицу:
+
+        class Student extends User {
+          incAge() {
+            this.#age++; // Error
+          }
+        }
+
+- ошибка исчезнет, если в классе-потомке объявить приватное свойство #age:
+
+        class Student extends User {
+          #age;
+          incAge() {
+            this.#age++; // Error
+          }
+        }
+
+- проблема в том, что теперь два приватных свойства - одно в родителе и одно в потомке, и они работают полностью независимо
+- это значит, что методы родителя будут изменять своё свойство, а методы потомка - свои
+- решение - манипулировать приватными свойствами родителя через методы этого родителя:
+
+        class Student extends User {
+          incAge() {
+            let age = this.getAge();
+            age++;
+            this.setAge(age);
+          }
+        }
