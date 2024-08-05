@@ -907,4 +907,82 @@
 //   }
 // }
 
-// $======================== защищённые методы в ооп ========================$ //
+// $======================== Защищённые методы в ооп ========================$ //
+
+// приватные методы не наследуются и не видны снаружи класса
+// иногда нужны методы, которые наследуются, но не видны снаружи класса
+// такие методы называют защищёнными (protected)
+// JS не поддерживает такие методы
+
+// существует соглашение, позволяющее создавать такие методы - имена таких методов начинаются с подчёркивания
+
+// class User {
+//   setName(name) {
+//     this.name = name;
+//   }
+//   getName() {
+//     return this._capeFirst(this.name);
+//   }
+//   _capeFirst(str) {
+//     return str[0].toUpperCase() + str.slice(1);
+//   }
+// }
+
+// class Student extends User {
+//   setSurname(surname) {
+//     this.surname = surname;
+//   }
+//   getSurname() {
+//     return this._capeFirst(this.surname);
+//   }
+// }
+
+// $======================== Защищённые свойства в ООП ========================$ //
+
+// защищённые свойства так же начинаются с подчёркивания
+
+// class User {
+//   setAge(age) {
+//     this._age = age;
+//   }
+//   getAge() {
+//     return this._age;
+//   }
+// }
+
+// class Student extends User {
+//   increaseAge() {
+//     this._age++;
+//   }
+// }
+
+// $======================== Иерархия наследования классов ========================$ //
+
+// можно выполнять наследования от класса, который сам является потомком:
+
+// class User {
+//   setName(name) {
+//     this._name = name;
+//   }
+//   getName() {
+//     return this._name;
+//   }
+// }
+
+// class Student extends User {
+//   setYear(year) {
+//     this._year = year;
+//   }
+//   getYear() {
+//     return this._year;
+//   }
+// }
+
+// class StudentProgrammer extends Student {
+//   setSkill(skill) {
+//     this._skill = skill;
+//   }
+//   getSkill() {
+//     return this._skill;
+//   }
+// }
