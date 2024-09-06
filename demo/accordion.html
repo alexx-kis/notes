@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/accordion.css" />
+    <title>Accordion</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <section class="accordion-section">
+        <div class="container">
+          <div class="acc">
+            <h2 class="acc__heading">
+              Accordion works using classes changings and "max-height" property
+            </h2>
+            <div class="acc__inner">
+              <div class="acc__inner-label label">.acc__inner</div>
+              <div class="acc__tab">
+                <div class="label">.acc__tab</div>
+                <div class="acc__section">
+                  <div class="acc__section-text">.acc__section-text</div>
+                  <div class="acc__section-button acc__button">
+                    <div class="acc__button-line"></div>
+                    <div class="acc__button-line"></div>
+                  </div>
+                </div>
+                <div class="acc__content">
+                  <div class="label">.acc__content</div>
+                  <div class="acc__text">
+                    <div class="label">.acc__text</div>
+                    <pre class="code">
+	let tabs = document.querySelectorAll(".acc__tab"); //табы
+	let sections = document.querySelectorAll(".acc__section"); // секция
+	let contents = document.querySelectorAll(".acc__content"); //раскрывающиеся контенты внтури табов
+	
+	for (let i = 0; i < contents.length; i++) {
+		sections[i].addEventListener("click", function () {
+			let active = document.querySelector(".acc__content--active"); //поиск открытого контента
+			let open = document.querySelector(".acc__tab--open"); //поиск открытого таба
+	
+			//если есть активный контент и его высота не равна 0
+			if (contents[i].classList.contains("acc__content--active") && contents[i].style.maxHeight != null) {
+	
+				//удалить пустой класс активности у контента
+				contents[i].classList.remove("acc__content--active");
+	
+				//удалить класс активности у вкладки (плюсик)
+				tabs[i].classList.remove("acc__tab--open");
+	
+				//закрыть контент
+				contents[i].style.maxHeight = null;
+			} else {
+				//добавить класс контенту
+				contents[i].classList.add("acc__content--active");
+	
+				//добавить класс активности вкладке
+				tabs[i].classList.add("acc__tab--open");
+	
+				//открыть контент
+				contents[i].style.maxHeight = contents[i].scrollHeight + "px";
+	
+				//если есть открытые контенты на странице
+				if (active) {
+					//удалить класс у контента
+					active.classList.remove("acc__content--active");
+	
+					//удалить класс у открытой вкладки
+					open.classList.remove("acc__tab--open");
+	
+					//закрыть контент
+					active.style.maxHeight = null;
+				}
+			}
+		});
+	}
+												</pre
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="acc__tab">
+                <div class="label">.acc__tab</div>
+                <div class="acc__section">
+                  <div class="acc__section-text">.acc__section-text</div>
+                  <div class="acc__section-button acc__button">
+                    <div class="acc__button-line"></div>
+                    <div class="acc__button-line"></div>
+                  </div>
+                </div>
+                <div class="acc__content">
+                  <div class="label">.acc__content</div>
+                  <div class="acc__text">
+                    <div class="label">.acc__text</div>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Inventore rerum id corrupti saepe laudantium sunt, assumenda
+                    veniam alias deserunt odit molestiae iure consequuntur
+                    ratione in ipsum eligendi facere eveniet fugit! Ullam
+                    maiores assumenda, nesciunt quo mollitia officiis iure
+                    tempore dolorem autem facere neque velit doloribus, debitis
+                    vero qui itaque consequatur quae, odit repellendus porro ut
+                    eum quas. Illum porro accusantium cumque non odio quam illo
+                    corrupti veniam deleniti voluptate iste sapiente consequatur
+                    placeat neque numquam nesciunt, dolorem est a magnam dolore
+                    delectus, iure error praesentium. Itaque maxime consectetur
+                    commodi! Non quidem temporibus deserunt, cumque tenetur quae
+                    et! Qui, fugit nemo.
+                  </div>
+                </div>
+              </div>
+
+              <div class="acc__tab">
+                <div class="label">.acc__tab</div>
+                <div class="acc__section">
+                  <div class="acc__section-text">.acc__section-text</div>
+                  <div class="acc__section-button acc__button">
+                    <div class="acc__button-line"></div>
+                    <div class="acc__button-line"></div>
+                  </div>
+                </div>
+                <div class="acc__content">
+                  <div class="label">.acc__content</div>
+                  <div class="acc__text">
+                    <div class="label">.acc__text</div>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Inventore rerum id corrupti saepe laudantium sunt, assumenda
+                    veniam alias deserunt odit molestiae iure consequuntur
+                    ratione in ipsum eligendi facere eveniet fugit! Ullam
+                    maiores assumenda, nesciunt quo mollitia officiis iure
+                    tempore dolorem autem facere neque velit doloribus, debitis
+                    vero qui itaque consequatur quae, odit repellendus porro ut
+                    eum quas. Illum porro accusantium cumque non odio quam illo
+                    corrupti veniam deleniti voluptate iste sapiente consequatur
+                    placeat neque numquam nesciunt, dolorem est a magnam dolore
+                    delectus, iure error praesentium. Itaque maxime consectetur
+                    commodi! Non quidem temporibus deserunt, cumque tenetur quae
+                    et! Qui, fugit nemo.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="./js/accordion.js"></script>
+  </body>
+</html>

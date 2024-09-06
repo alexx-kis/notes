@@ -1,0 +1,105 @@
+.accordion-section {
+  min-height: 100dvh;
+  padding-top: 10dvh;
+  background: #b67540;
+}
+
+.label {
+  margin: 0 5px 10px 0;
+  color: #383838;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.acc {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  border-radius: 25px;
+  background: #eaa56d;
+}
+.acc__heading {
+  margin-bottom: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.acc__inner {
+  padding: 5px;
+  border: 1px solid #383838;
+}
+.acc__tab {
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid #383838;
+}
+.acc__tab--open .acc__button-line:last-child {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.acc__tab--open .acc__link {
+  background: #ccc;
+}
+.acc__section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px 25px;
+  border-radius: 25px;
+  background: #5f256f;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.acc__section:hover {
+  background: #8e2ca9;
+}
+.acc__section-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+.acc__button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20px;
+  height: 20px;
+}
+.acc__button-line {
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background: #fff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.acc__button-line:last-child {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.acc__content {
+  max-height: 0;
+  overflow-x: hidden;
+  border: 1px solid #383838;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.acc__text {
+  padding: 10px;
+  border: 1px solid #383838;
+}

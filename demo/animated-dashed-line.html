@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <title>
+    animated-dashed-line
+  </title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/animated-dashed-line.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <svg class="line" width="1376" height="323" viewBox="0 0 1376 323" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- @  mask that reveals the line  @ -->
+          <mask id="msk-for-line__path">
+            <!-- @  mask path must be the same as dashed line path  @ -->
+            <path fill="none" stroke-width="4" stroke="#fff" stroke-dasharray="2020" stroke-dashoffset="2020"
+              d="M-7 207C67 202 229 175 281 116C345 42 344 -12 312 5C281 23 364 111 436 129C508 147 606 125 693 59C780 -6 873 -6 833 69C793 145 754 29 859 107C964 184 910 297 1001 318C1093 339 1130 236 1171 153C1203 86 1326 62 1383 59">
+            </path>
+          </mask>
+        </defs>
+
+        <!-- @  the animating dashed line path  @ -->
+        <!-- @  line path must have 'mask' attribute  @ -->
+        <path id="line__path" mask="url(#msk-for-line__path)"
+          d="M-7 207C67 202 229 175 281 116C345 42 344 -12 312 5C281 23 364 111 436 129C508 147 606 125 693 59C780 -6 873 -6 833 69C793 145 754 29 859 107C964 184 910 297 1001 318C1093 339 1130 236 1171 153C1203 86 1326 62 1383 59"
+          stroke="#56008D" stroke-width="3" stroke-dasharray="6 6"></path>
+      </svg>
+    </div>
+  </div>
+</body>
+
+</html>

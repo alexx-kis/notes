@@ -1,0 +1,103 @@
+html {
+	scroll-behavior: smooth;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	letter-spacing: .5px;
+}
+
+.wrapper {
+	min-height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: #242a30;
+	color: #fff;
+}
+
+.container {
+	max-width: 1200px;
+	padding: 0 30px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.js {
+	font-family: 'CamingoCode';
+	color: rgb(246, 167, 70);
+	line-height: 1.5;
+	// font-weight: 700;
+}
+
+.html {
+	font-family: 'CamingoCode';
+	color: rgb(214, 31, 31);
+	line-height: 1.5;
+	// font-weight: 700;
+}
+
+.css {
+	font-family: 'CamingoCode';
+	color: rgb(54, 167, 209);
+	line-height: 1.5;
+	// font-weight: 700;
+}
+
+.code {
+	margin-bottom: 30px;
+	font-size: 18px;
+}
+
+.comment {
+	font-family: 'CamingoCode';
+	color: #a0a0a0;
+	line-height: 1.5;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.main {
+	padding-top: 40px;
+}
+
+.section {
+	padding-block: 20px;
+	// border: 1px solid #ff800080;
+	border-radius: 10px;
+}
+
+.heading {
+
+	font-size: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: 700;
+
+
+	&_main {
+		font-size: 40px;
+		margin-bottom: 40px;
+	}
+
+	&_s {}
+
+}
+
+.title {
+	font-size: 20px;
+	margin-bottom: 20px;
+	position: relative;
+	padding-left: 15px;
+	line-height: 28px;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 5px;
+		height: 5px;
+		background-color: #fff;
+		border-radius: 50%;
+		position: absolute;
+		left: 0;
+		top: 10px;
+	}
+}
