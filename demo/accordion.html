@@ -12,52 +12,51 @@
     <div class="wrapper">
       <section class="accordion-section">
         <div class="container">
-          <div class="acc">
-            <h2 class="acc__heading">
+          <div class="accordion">
+            <!-- <h2 class="acc__heading">
               Accordion works using classes changings and "max-height" property
-            </h2>
-            <div class="acc__inner">
+            </h2> -->
               <div class="acc__inner-label label">.acc__inner</div>
-              <div class="acc__tab">
-                <div class="label">.acc__tab</div>
-                <div class="acc__section">
-                  <div class="acc__section-text">.acc__section-text</div>
-                  <div class="acc__section-button acc__button">
-                    <div class="acc__button-line"></div>
-                    <div class="acc__button-line"></div>
+              <div class="accordion__tab">
+                <div class="label">.accordion__tab</div>
+                <div class="accordion__header">
+                  <div class="accordion__header-text">.accordion__header-text</div>
+                  <div class="accordion__header-button">
+                    <div class="accordion__header-button-line"></div>
+                    <div class="accordion__header-button-line"></div>
                   </div>
                 </div>
-                <div class="acc__content">
-                  <div class="label">.acc__content</div>
-                  <div class="acc__text">
-                    <div class="label">.acc__text</div>
+                <div class="accordion__body">
+                  <div class="label">.accordion__body</div>
+                  <div class="accordion__text">
+                    <div class="label">.accordion__text</div>
                     <pre class="code">
-	let tabs = document.querySelectorAll(".acc__tab"); //табы
-	let sections = document.querySelectorAll(".acc__section"); // секция
-	let contents = document.querySelectorAll(".acc__content"); //раскрывающиеся контенты внтури табов
+	let tabs = document.querySelectorAll(".accordion__tab"); //табы
+	let sections = document.querySelectorAll(".accordion__header"); // секция
+	let contents = document.querySelectorAll(".accordion__body"); //раскрывающиеся контенты внтури табов
 	
 	for (let i = 0; i < contents.length; i++) {
 		sections[i].addEventListener("click", function () {
-			let active = document.querySelector(".acc__content--active"); //поиск открытого контента
-			let open = document.querySelector(".acc__tab--open"); //поиск открытого таба
+			let active = document.querySelector(".accordion__body--active"); //поиск открытого контента
+			let open = document.querySelector(".accordion__tab--open"); //поиск открытого таба
 	
 			//если есть активный контент и его высота не равна 0
-			if (contents[i].classList.contains("acc__content--active") && contents[i].style.maxHeight != null) {
+			if (contents[i].classList.contains("accordion__body--active") && contents[i].style.maxHeight != null) {
 	
 				//удалить пустой класс активности у контента
-				contents[i].classList.remove("acc__content--active");
+				contents[i].classList.remove("accordion__body--active");
 	
 				//удалить класс активности у вкладки (плюсик)
-				tabs[i].classList.remove("acc__tab--open");
+				tabs[i].classList.remove("accordion__tab--open");
 	
 				//закрыть контент
 				contents[i].style.maxHeight = null;
 			} else {
 				//добавить класс контенту
-				contents[i].classList.add("acc__content--active");
+				contents[i].classList.add("accordion__body--active");
 	
 				//добавить класс активности вкладке
-				tabs[i].classList.add("acc__tab--open");
+				tabs[i].classList.add("accordion__tab--open");
 	
 				//открыть контент
 				contents[i].style.maxHeight = contents[i].scrollHeight + "px";
@@ -65,10 +64,10 @@
 				//если есть открытые контенты на странице
 				if (active) {
 					//удалить класс у контента
-					active.classList.remove("acc__content--active");
+					active.classList.remove("accordion__body--active");
 	
 					//удалить класс у открытой вкладки
-					open.classList.remove("acc__tab--open");
+					open.classList.remove("accordion__tab--open");
 	
 					//закрыть контент
 					active.style.maxHeight = null;
@@ -82,19 +81,19 @@
                 </div>
               </div>
 
-              <div class="acc__tab">
-                <div class="label">.acc__tab</div>
-                <div class="acc__section">
-                  <div class="acc__section-text">.acc__section-text</div>
-                  <div class="acc__section-button acc__button">
-                    <div class="acc__button-line"></div>
-                    <div class="acc__button-line"></div>
+              <div class="accordion__tab">
+                <div class="label">.accordion__tab</div>
+                <div class="accordion__header">
+                  <div class="accordion__header-text">.accordion__header-text</div>
+                  <div class="accordion__header-button">
+                    <div class="accordion__header-button-line"></div>
+                    <div class="accordion__header-button-line"></div>
                   </div>
                 </div>
-                <div class="acc__content">
-                  <div class="label">.acc__content</div>
-                  <div class="acc__text">
-                    <div class="label">.acc__text</div>
+                <div class="accordion__body">
+                  <div class="label">.accordion__body</div>
+                  <div class="accordion__text">
+                    <div class="label">.accordion__text</div>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Inventore rerum id corrupti saepe laudantium sunt, assumenda
                     veniam alias deserunt odit molestiae iure consequuntur
@@ -112,19 +111,19 @@
                 </div>
               </div>
 
-              <div class="acc__tab">
-                <div class="label">.acc__tab</div>
-                <div class="acc__section">
-                  <div class="acc__section-text">.acc__section-text</div>
-                  <div class="acc__section-button acc__button">
-                    <div class="acc__button-line"></div>
-                    <div class="acc__button-line"></div>
+              <div class="accordion__tab">
+                <div class="label">.accordion__tab</div>
+                <div class="accordion__header">
+                  <div class="accordion__header-text">.accordion__header-text</div>
+                  <div class="accordion__header-button">
+                    <div class="accordion__header-button-line"></div>
+                    <div class="accordion__header-button-line"></div>
                   </div>
                 </div>
-                <div class="acc__content">
-                  <div class="label">.acc__content</div>
-                  <div class="acc__text">
-                    <div class="label">.acc__text</div>
+                <div class="accordion__body">
+                  <div class="label">.accordion__body</div>
+                  <div class="accordion__text">
+                    <div class="label">.accordion__text</div>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Inventore rerum id corrupti saepe laudantium sunt, assumenda
                     veniam alias deserunt odit molestiae iure consequuntur
@@ -141,7 +140,6 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </section>

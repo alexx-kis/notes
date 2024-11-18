@@ -17,9 +17,10 @@ $dark-gray: #383838;
 	color: $dark-gray;
 	font-size: 12px;
 	font-style: italic;
+	display: none;
 }
 
-.acc {
+.accordion {
 	max-width: 1000px;
 	margin: 0 auto 20px;
 	padding: 20px;
@@ -41,44 +42,48 @@ $dark-gray: #383838;
 		margin-bottom: 20px;
 		padding: 5px;
 		border: 1px solid $dark-gray;
+		display: grid;
+		grid-template-rows: 40px 0fr;
+		transition: all 250ms;
+		row-gap: 10px;
 
-		&--open {
-			.acc__button-line {
+		&._active {
+			grid-template-rows: 40px 1fr;
+			.accordion__header-button-line {
 				&:last-child {
 					transform: rotate(180deg);
 				}
 			}
 
-			.acc__link {
+			.accordion__link {
 				background: #ccc;
 			}
 		}
 	}
 
-	&__section {
+	&__header {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 10px;
 		padding: 10px 25px;
 		border-radius: 25px;
 		background: #5f256f;
 		cursor: pointer;
 		font-size: 18px;
 		font-weight: 600;
-		transition: all 0.3s;
+		transition: background 0.3s;
 
 		&:hover {
 			background: #8e2ca9;
 		}
 	}
 
-	&__section-text {
+	&__header-text {
 		color: #fff;
 		font-size: 18px;
 		font-weight: 700;
 	}
 
-	&__button {
+	&__header-button {
 		position: relative;
 		display: flex;
 		justify-content: center;
@@ -87,7 +92,7 @@ $dark-gray: #383838;
 		height: 20px;
 	}
 
-	&__button-line {
+	&__header-button-line {
 		position: absolute;
 		width: 14px;
 		height: 2px;
@@ -99,9 +104,8 @@ $dark-gray: #383838;
 		}
 	}
 
-	&__content {
-		max-height: 0;
-		overflow-x: hidden;
+	&__body {
+		overflow: hidden;
 
 		border: 1px solid $dark-gray;
 		transition: all 0.3s;
