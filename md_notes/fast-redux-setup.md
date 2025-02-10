@@ -1,5 +1,9 @@
 # 1. Создать директорию store в директории src
 
+- установить
+  `@reduxjs/toolkit` и `react-redux` в dependencies
+  `@types/react-redux` в devDependencies
+
 # 2. Внутри создать файлы:
 
 ## 1. index.ts
@@ -117,4 +121,35 @@ const onNavLinkClick = (location: string) => {
   dispatch(changeCity(location));
   dispatch(fillOfferList());
 };
+```
+
+- также нужно обернуть всё приложение в тэг `<Provider>` и в пропс `store` передать ему `store` (который был создан в шаге 1)
+
+- для использования в `next` нужно создать обёртку для провайдера, потому что компонент `<layout>` нельзя сделать клиентским
+
+```ts
+'use client';
+
+import { Provider } from 'react-redux';
+import { store } from '@/store';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <Provider store={store}>{children}</Provider>;
+}
+```
+
+в компоненте `<RootLayout>` обернуть всё, что внутри элемента `<body>` в компонент `<Providers>`
+
+```tsx
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
+    </html>
+  );
+}
 ```
