@@ -4,6 +4,10 @@
 
 ## 1. index.ts
 
+ установка Redux для React
+ - в основные зависимости dependencies установить `react-redux` и `@reduxjs/toolkit`
+ - в devDependencies установить `@types/react-redux`
+
 - здесь инициализировать хранилище
 
 ```ts
