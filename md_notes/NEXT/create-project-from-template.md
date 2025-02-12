@@ -1,0 +1,1 @@
+npx create-next-app [new project name] -e https://github.com/alexx-kis/next_template
