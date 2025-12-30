@@ -12,6 +12,7 @@
     "Abramov",
     "AFTERBEGIN",
     "AFTEREND",
+    "alexx",
     "Alyonushka",
     "Antonov",
     "Aora",
@@ -286,12 +287,5 @@
     "экшены",
     "Юнит"
   ],
-  "cSpell.ignoreWords": [
-    "BPSV",
-    "Nana",
-    "Niki",
-    "Supertramp",
-    "котейшество",
-    "отрисуется"
-  ]
+  "cSpell.ignoreWords": ["BPSV", "Nana", "Niki", "Supertramp", "котейшество", "отрисуется"]
 }
