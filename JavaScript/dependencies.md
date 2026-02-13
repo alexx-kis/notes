@@ -7,12 +7,16 @@
 - Основные зависимости (dependencies) - пакеты, без которых приложение не сможет работать
 - Установка зависимостей производится с помощью команды
 
+```bash
         npm install <package>
         // где <package> - название зависимости
+```
 
 - в пустом/новом проекте нужно сначала инициализировать npm:
 
+```bash
         npm init
+```
 
 - ответить на все вопросы
 - после чего создастся файл package.json
@@ -30,11 +34,15 @@
 
 - для установки в раздел devDependencies нужно прописать --save-dev:
 
-        npm install --save-dev <package>
+```bash
+npm install --save-dev <package>
+```
 
 - или можно использовать флаг -D:
 
-        npm install -D <package name>
+```bash
+npm install -D <package name>
+```
 
 ## Зачем разделять зависимости
 
@@ -45,7 +53,9 @@
 
 - добавление к команде npm install префикса --omit=dev установит все зависимости кроме devDependencies
 
-        npm install --omit=dev
+```bash
+npm install --omit=dev
+```
 
 ## peerDependencies
 
@@ -60,4 +70,6 @@
 
 - чтобы установить точную версию, нужно использовать флаг -E
 
-        npm install -E <package>
+```bash
+npm install -E <package>
+```

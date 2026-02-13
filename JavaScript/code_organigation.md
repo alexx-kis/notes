@@ -19,11 +19,13 @@
 
 - Модуль изолирует пространство имён, чтобы переменные из одного модуля не попадали в другой модуль, как это бывает с глобальными переменными - всё, что создаётся в модуле, остаётся в модуле
 
-          // Файл mother.js
-          const name = 'Eve';
+```js
+// Файл mother.js
+const name = 'Eve';
 
-          // Файл father.js
-          const name = 'Adam';
+// Файл father.js
+const name = 'Adam';
+```
 
 - в каждом из модулей есть переменная name, и ни одна из них не попадёт в глобальную область видимости window - если подключить оба файла к странице, конфликтов не будет
 
@@ -31,10 +33,12 @@
 
 - модуль должен описывать и давать понимание, какие у него есть зависимости, например, модуль может зависеть от других модулей:
 
-        // Файл сain.js
-        import {name} from './mother.js';
+```js
+// Файл сain.js
+import { name } from './mother.js';
 
-        `My mother is ${name}`; // My mother is Eve
+`My mother is ${name}`; // My mother is Eve
+```
 
 - модуль cain.js зависит от модуля mother.js, а конкретно от переменной name, полученной из этого модуля
 
@@ -43,14 +47,18 @@
 - модуль должен описывать интерфейс - методы и свойства - которые он может предоставить другим модулям
 - чтобы предыдущий пример работал, нужно показать, что у модуля mother.js в интерфейсе есть свойство name, которое могут использовать другие модули
 
-        // Файл mother.js
-        const name = 'Eve';
+```js
+// Файл mother.js
+const name = 'Eve';
 
-        export {name};
+export { name };
+```
 
 - чтобы браузер считал JS-файл модулем, его нужно подключить как модуль:
 
-        <script type="module" src="сain.js"></script>
+```html
+<script type="module" src="сain.js"></script>
+```
 
 - модули по умолчанию работают в строгом режиме, поэтому нет необходимости писать 'use strict'
 
@@ -60,30 +68,36 @@
 
 - когда нужно только выполнить код модуля, достаточно просто его импортировать
 
-        // Файл alert.js
-        alert('Hello, world!');
+```js
+// Файл alert.js
+alert('Hello, world!');
 
-        // Файл index.js
-        import './alert.js';
+// Файл index.js
+import './alert.js';
+```
 
 ### Именованные экспорт и импорт
 
 - в одном модуле нужно явно написать, что экспортировать:
 
-        // Файл mother.js
-        const name = 'Eve';
-        const age = 18;
+```js
+// Файл mother.js
+const name = 'Eve';
+const age = 18;
 
-        export const sex = 'female'; // Экспорт сразу при объявлении
+export const sex = 'female'; // Экспорт сразу при объявлении
 
-        export {name, age}; // Экспорт уже объявленных переменных
+export { name, age }; // Экспорт уже объявленных переменных
+```
 
 - а в другом нужно написать, что импортировать:
 
-        // Файл сain.js
-        import {name} from './mother.js';
+```js
+// Файл сain.js
+import { name } from './mother.js';
 
-        `My mother is ${name}`; // My mother is Eve
+`My mother is ${name}`; // My mother is Eve
+```
 
 ## Нюансы
 
@@ -116,25 +130,31 @@
 
 - путь может быть указан в одинарных или двойных кавычках:
 
-        import mother from './mother.js';
-        import mother from "./mother.js";
+```js
+import mother from './mother.js';
+import mother from './mother.js';
+```
 
 - путь может быть абсолютным или относительным:
 
-        import 'https://jakearchibald.com/utils/bar.js'; // URL
-        import '/utils/bar.js'; // Абсолютный путь относительно домена
-        import './bar.js'; // Относительный путь от текущего модуля
-        import '../bar.js'; // Относительный путь от родительской директории
+```js
+import 'https://jakearchibald.com/utils/bar.js'; // URL
+import '/utils/bar.js'; // Абсолютный путь относительно домена
+import './bar.js'; // Относительный путь от текущего модуля
+import '../bar.js'; // Относительный путь от родительской директории
+```
 
 - если при загрузке модуля или его дочерних модулей (тех, которые он импортирует) произошла ошибка, все родительские модули (которые его импортируют) не будут загружены
 - путь в конструкции import является константой и не может быть сборным
 
-        import 'https://funny-random-script.zone/' + Math.random() + '/script.js'; // Так нельзя
-        import `https://funny-random-script.zone/${Math.random()}/script.js`; // И так нельзя
-        import 'https://funny-random-script.zone/' + 'js/' + 'script.js'; // Так тоже нельзя
+```js
+import 'https://funny-random-script.zone/' + Math.random() + '/script.js'; // Так нельзя
+import `https://funny-random-script.zone/${Math.random()}/script.js`; // И так нельзя
+import 'https://funny-random-script.zone/' + 'js/' + 'script.js'; // Так тоже нельзя
 
-        const path = 'https://funny-random-script.zone/js/script.js';
-        import path; // Даже так нельзя
+const path = 'https://funny-random-script.zone/js/script.js';
+import path; // Даже так нельзя
+```
 
 ## Как использовать модули
 
@@ -158,11 +178,13 @@
 
 - бывают случаи, когда в одном модуле экспортируется переменная, которая уже существует в другом - то есть есть две переменные с одинаковым названием в двух разных модулях
 
-        // Файл сain.js
-        import {name} from './mother.js';
-        import {name} from './father.js';
+```js
+// Файл сain.js
+import { name } from './mother.js';
+import { name } from './father.js';
 
-        const name = 'Сain';
+const name = 'Сain';
+```
 
 #### Три переменных "name"?
 
@@ -172,40 +194,46 @@
 
 - импортируемые переменные можно переименовывать:
 
-        // Файл сain.js
-        import {name as motherName} from './mother.js';
-        import {name as fatherName} from './father.js';
+```js
+// Файл сain.js
+import { name as motherName } from './mother.js';
+import { name as fatherName } from './father.js';
 
-        const name = 'Сain';
+const name = 'Сain';
 
-        `My mother is ${motherName}`; // My mother is Eve
-        `My father is ${fatherName}`; // My father is Adam
-        `My name is ${name}`; // My name is Сain
+`My mother is ${motherName}`; // My mother is Eve
+`My father is ${fatherName}`; // My father is Adam
+`My name is ${name}`; // My name is Сain
+```
 
 - таким же образом можно переименовать переменную при экспорте, но это редко:
 
-        // Файл mother.js
-        const name = 'Eve';
+```js
+// Файл mother.js
+const name = 'Eve';
 
-        export {name as motherName};
+export { name as motherName };
 
-        // Файл сain.js
-        import {motherName} from './mother.js';
+// Файл сain.js
+import { motherName } from './mother.js';
+```
 
 ### Импортировать как...
 
 - когда у модуля только именованный экспорт, перечислять все переменные долго
 - для этого можно воспользоваться конструкцией import \* - и импортировать все именованные экспорты в одно пространство имён:
 
-        // Файл mother.js
-        const name = 'Eve';
-        const age = 18;
+```js
+// Файл mother.js
+const name = 'Eve';
+const age = 18;
 
-        export const sex = 'female';
+export const sex = 'female';
 
-        export {name, age};
+export { name, age };
 
-        // Файл сain.js
-        import * as mother from './mother.js';
+// Файл сain.js
+import * as mother from './mother.js';
 
-        mother; // {sex: 'female', name: 'Eve', age: 18}
+mother; // {sex: 'female', name: 'Eve', age: 18}
+```

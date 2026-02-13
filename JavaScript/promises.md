@@ -127,7 +127,7 @@ promise.then(
   },
   (error) => {
     console.log(error);
-  }
+  },
 );
 ```
 
@@ -154,7 +154,7 @@ promise.then(
   },
   (error) => {
     console.log(error);
-  }
+  },
 );
 ```
 
@@ -251,20 +251,19 @@ promise
 
 ```js
 promise
-	.then((result) => {
-		return result + '1';
-	})
-	.then((result) => {
-		return result + '2';
-	})
-	.then((result) => {
-		return result + '3';
-	})
-	.then((result) => {
-		console.log(result); //выведет 'string123'
-	});
+  .then((result) => {
+    return result + '1';
+  })
+  .then((result) => {
+    return result + '2';
+  })
+  .then((result) => {
+    return result + '3';
+  })
+  .then((result) => {
+    console.log(result); //выведет 'string123'
+  });
 ```
-
 
 ## Промисы внутри цепочки промисов
 
@@ -272,7 +271,7 @@ promise
 
 - в этом случае результат этого промиса попадёт в следующий then:
 
-```js
+````js
 promise
 	.then((result) => {
 		return result + '1';
@@ -301,7 +300,7 @@ const promise = new Promise((resolve, reject) => {
 		reject('error');
 	}, 3000);
 });
-```
+````
 
 - в этом случае выполнение кода сразу перейдёт к тому then, в котором есть функция-обработчик ошибки, либо к первому `catch`, смотря, что встретится раньше
 
@@ -351,7 +350,7 @@ promise
 
 - как правило, все ошибки цепочки перехватываются в одном месте: в конце цепочки размещается `catch`:
 
-```js
+````js
 promise
 	.then((result) => {
 		return result + '1';
@@ -384,7 +383,7 @@ promise
 	.catch((error) => {
 		ближайший перехватчик
 	});
-```
+````
 
 - `catch` нужен именно для диагностики ошибки: она решаема или нет
 
@@ -412,7 +411,6 @@ promise
 	});
 ```
 
-
 ## Работа с массивами промисов
 
 - метод `Promise.all()` позволяет выполнить код по окончанию всех промисов, переданных ему в виде массива, а метод `Promise.race()` дожидается загрузки первого промиса из массива, отбрасывая остальные
@@ -424,21 +422,21 @@ promise
 
 ```js
 const promises = [
-	new Promise(resolve => {
-		setTimeout(() => {
-			resolve(1);
-		}, 1000);
-	}),
-	new Promise(resolve => {
-		setTimeout(() => {
-			resolve(2);
-		}, 2000);
-	}),
-	new Promise(resolve => {
-		setTimeout(() => {
-			resolve(3);
-		}, 3000);
-	})
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1);
+    }, 1000);
+  }),
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(2);
+    }, 2000);
+  }),
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(3);
+    }, 3000);
+  }),
 ];
 ```
 
@@ -454,23 +452,18 @@ Promise.race(promises).then((result) => {
 
 - поэтому возникшее исключение можно поймать через `catch`
 
-````js
+```js
 Promise.all(promises)
 	.then((result) => {
 		console.log(result);
 	})
 	.catch((error) => {
 		console.log(error);
-	});
-	```
-
+```
 
 ## Создание сработавших промисов
 
-- иногда может понадобиться создать уже выполненный промис
-для этого существует два метода:
-	1. `Promise.resolve()` создаёт успешно выполненный промис
-	2. `Promise.reject()` создаёт отклонённый промис
+- иногда может понадобиться создать уже выполненный промис для этого существует два метода: 1. `Promise.resolve()` создаёт успешно выполненный промис 2. `Promise.reject()` создаёт отклонённый промис
 
 - параметром эти методы получают то, что станет результатом или ошибкой промиса соответственно
 
@@ -480,17 +473,17 @@ Promise.all(promises)
 
 ```js
 const func = (number) => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(number ** 2);
-		}, 3000);
-	});
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(number ** 2);
+    }, 3000);
+  });
 };
 
 func(5).then((result) => {
-	console.log(result);
+  console.log(result);
 });
-````
+```
 
 - пусть теперь асинхронная операция совершается только если передано число больше нуля, иначе результатом функции будет 0
 
@@ -599,43 +592,42 @@ const loadImage = (path) => {
 
 - функцией можно воспользоваться следующим образом:
 
-````js
+```js
 loadImage('img.png')
-	.then((image) => {
-		document.body.append(image);
-	})
-	.catch((error) => {
-		console.log(error);
-	});
-	```
+  .then((image) => {
+    document.body.append(image);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
 
+- Проблема promise hell https://code.mu/ru/javascript/book/supreme/promises/promise-hell/
 
-- Проблема promise hell
-https://code.mu/ru/javascript/book/supreme/promises/promise-hell/
+- Промисы в синхронном стиле https://code.mu/ru/javascript/book/supreme/promises/sync-style/
 
-- Промисы в синхронном стиле
-https://code.mu/ru/javascript/book/supreme/promises/sync-style/
-
-- Исключения в синхронном стиле
-https://code.mu/ru/javascript/book/supreme/promises/sync-style-exceptions/
+- Исключения в синхронном стиле https://code.mu/ru/javascript/book/supreme/promises/sync-style-exceptions/
 
 ```js
 const number1 = 10;
 const number2 = 40;
 
 const promise = new Promise((resolve, reject) => {
-	if (number1 > number2) {
-		resolve(number1 - number2);
-	} else {
-		throw { name: 'myError', message: 'my error message' };
-	}
+  if (number1 > number2) {
+    resolve(number1 - number2);
+  } else {
+    throw { name: 'myError', message: 'my error message' };
+  }
 });
 
-promise.then((result) => {
-	console.log(result);
-}).catch((error) => {
-	console.log(error.name, error.message);
-}).finally(() => {
-	console.log('promise ended');
-});
-````
+promise
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error.name, error.message);
+  })
+  .finally(() => {
+    console.log('promise ended');
+  });
+```

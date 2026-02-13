@@ -25,7 +25,7 @@ export default nextConfig;
 - этот базовый путь нужно добавить везде, где используются изображения, например:
 
 ```ts
-`${basePath}/img/works/cloudbudget.png`,
+`${basePath}/img/works/cloud-budget.png`,
 
 //
 style={{ backgroundImage: `url(${basePath}/img/bg/hero-bg.jpg)`}}

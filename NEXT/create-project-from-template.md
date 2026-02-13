@@ -1,6 +1,3 @@
-npx create-next-app@latest [new project name] -e https://github.com/alexx-kis/next_template
+`npx create-next-app@latest <my-next-app> -e https://github.com/alexx-kis/next_template`
 
-(npm create vite@latest [new project name] --template https://github.com/alexx-kis/vite_template) - old, not working
-
-
-npx degit alexx-kis/vite_template [new project name]
+`npx degit alexx-kis/vite_template <my-vite-app>`

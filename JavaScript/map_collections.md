@@ -4,96 +4,126 @@
 
 - Для создания коллекции Map используется оператор new:
 
-		const map = new Map();
+```js
+const map = new Map();
+```
 
 - После этого в коллекцию можно будет добавлять элементы с помощью метода .set и получать их с помощью метода .get
 
 - Пусть в качестве ключей два массива:
 
-		const arr1 = [1, 2];
-		const arr2 = [3, 4];
+```js
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+```
 
 - Присвоение ключам значений:
 
-		map.set(arr1, 'data1');
-		map.set(arr2, 'data2');
+```js
+map.set(arr1, 'data1');
+map.set(arr2, 'data2');
+```
 
 - Чтение значений по ключам:
 
-		console.log(map.get(arr1));   //data1
-		console.log(map.get(arr2));   //data2
+```js
+console.log(map.get(arr1)); //data1
+console.log(map.get(arr2)); //data2
+```
 
 - можно заполнить коллекцию сразу, при этом передать нужно массив, состоящий из массивов с двумя элементами
 
-		const map = new Map(
-			[
-				[1, 'one'],
-				[2, 'two'],
-			]
-		);
+```js
+const map = new Map([
+  [1, 'one'],
+  [2, 'two'],
+]);
+```
 
 ## ПОЛЕЗНЫЕ ВОЗМОЖНОСТИ MAP
 
-- Свойство size содержит размер коллекции
+- Свойство `size` содержит размер коллекции
 
-		console.log(map.size);   //3
+```js
+console.log(map.size); //3
+```
 
-- Метод has проверяет наличие ключа:
+- Метод `has` проверяет наличие ключа:
 
-		console.log(map.has(arr1));   //false
-		console.log(map.has(obj1));   //true
+```js
+console.log(map.has(arr1)); //false
+console.log(map.has(obj1)); //true
+```
 
-- Метод delete удаляет элемент по ключу:
+- Метод `delete` удаляет элемент по ключу:
 
-		map.delete(obj2);
+```js
+map.delete(obj2);
+```
 
-- Метод clear() очищает всю коллекцию:
+- Метод `clear()` очищает всю коллекцию:
 
-		map.clear();
+```js
+map.clear();
+```
 
 ## Перебор коллекций Map
 
 - Пусть есть некоторая коллекция Map:
 
-		const map = new Map;
+```js
+const map = new Map();
 
-		const arr1 = [1, 2];
-		const arr2 = [3, 4];
+const arr1 = [1, 2];
+const arr2 = [3, 4];
 
-		map.set(arr1, 'data1');
-		map.set(arr2, 'data2');
+map.set(arr1, 'data1');
+map.set(arr2, 'data2');
+```
 
 - Эту коллекцию можно перебрать циклом for-of:
 
-		for (const elem of map) {
-
-		}
+```js
+for (const elem of map) {
+  //...
+}
+```
 
 - При этом в переменную elem будут попадать массивы пар ключ-значение, в первом элементе будет ключ, во втором - значение:
 
-		for (const elem of map) {
-			console.log(elem);   //[[1, 2], 'data1]; [[3, 4], data2]
-		}
+```js
+for (const elem of map) {
+  console.log(elem); //[[1, 2], 'data1]; [[3, 4], data2]
+}
+```
 
 - Можно отделить ключи и значения с помощью деструктуризации:
 
-		for (const [key, elem] of map) {
-			console.log(key);
-			console.log(elem);
-		}
+```js
+for (const [key, elem] of map) {
+  console.log(key);
+  console.log(elem);
+}
+```
 
 ## Ключи и значения в коллекциях Map
 
 - Чтобы получить только ключи или только значения, существуют специальные методы
 
-- Метод values() получает значения:
+- Метод `values()` получает значения:
 
-		const values = map.values();
+```js
+const values = map.values();
+```
 
-- Метод keys() получает ключи:
+- Метод `keys()` получает ключи:
 
-		const keys = map.keys();
+```js
+const keys = map.keys();
+```
 
-- Метод entries() получает набор пар ключ-значение:
+- Метод `entries()` получает набор пар ключ-значение:
 
-		const entries = map.entries();
+```js
+const entries = map.entries();
+```
