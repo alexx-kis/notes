@@ -1,11 +1,4 @@
 {
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "expanded",
-      "extensionName": ".css",
-      "savePath": "/demo/css"
-    }
-  ],
   "workbench.colorTheme": "Umbra",
   "cSpell.words": [
     "100vmax",
@@ -54,6 +47,7 @@
     "nums",
     "Osbourne",
     "Ozzy",
+    "passwordless",
     "pgsql",
     "pregular",
     "psemibold",
@@ -61,6 +55,7 @@
     "reactpatterns",
     "Sambora",
     "sidenav",
+    "sshconfig",
     "Supabase",
     "swiper",
     "topleft",
@@ -339,5 +334,12 @@
     "экшены",
     "Юнит"
   ],
-  "cSpell.ignoreWords": ["BPSV", "Nana", "Niki", "Supertramp", "котейшество", "отрисуется"]
+  "cSpell.ignoreWords": [
+    "BPSV",
+    "Nana",
+    "Niki",
+    "Supertramp",
+    "котейшество",
+    "отрисуется"
+  ]
 }
